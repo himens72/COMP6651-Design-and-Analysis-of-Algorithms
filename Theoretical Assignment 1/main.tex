@@ -1,0 +1,255 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage{fullpage} % changes the margin
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\begin{document}
+\noindent
+\large\textbf{Homework 01} \hfill \textbf{Himen Hitesh Sidhpura} \\
+\normalsize COMP6651 \hfill \textbf{40091993} \\
+Prof. Tiberiu Popa \hfill Due Date: 22/Feb/2018 \\
+
+\section{Prove or Disprove}
+\begin{enumerate}
+    \item $O(2^n)$  =  $O(4^n)$ \\ \\
+    Let $O(2^n)$ is member of the set  $0(4^n)$ \\
+    Using $O-notation$, 0 $\leq$  $f(n)$ $\leq$ cg(n) \\
+    0 $\leq$  $2^n$ $\leq$ c$4^n$ \\
+    0 $\leq$ $\frac{1}{2^n}$ $\leq$ c \\
+    Since, for all value  of $n_o \geq  1$ and n $\geq n_o$, C is constant.\\\\
+    Let $O(4^n)$ is member of the set  $0(2^n)$ \\
+    Using $O-notation$, 0 $\leq$  $f(n)$ $\leq$ $cg(n)$ \\
+    0 $\leq$ $4^n$  $\leq$ c$2^n$ \\
+    0 $\leq$ $2^n$ $\leq$ c \\
+    Since, It is impossible to exist for all value  of $n_o \geq  1$ and n $\geq n_o$. Hence, it is contradicted.\\
+    Hence, $O(2^n) \neq O(4^n)$ \\
+    \item $O(log{}(2^n))$  =  $O(log{}(4^n))$ \\\\
+    Let $O(log{}(2^n))$ is member of the set  $O(log{}(4^n))$ \\
+    Using $O-notation$, 0 $\leq$  $f(n)$ $\leq$ c$g(n)$ \\
+    0 $\leq$  $log{}(2^n)$ $\leq$ c$log{}(4^n)$ \\
+    0 $\leq$ $\frac{1}{n}$ $\leq$ c \\
+    Since, for all value  of $n_o \geq  1$ and n $\geq n_o$, C is constant. There must exist $\Bar{f(n)} \leq \Bar{c}g(n)$ \\
+    
+    Let $O(log{}(4^n))$ is member of the set  $O(log{}(2^n))$ \\
+    Using $O-notation$, 0 $\leq$  $f(n)$ $\leq$ c$g(n)$ \\
+    0 $\leq$ $log{}(4^n)$  $\leq$ c$log{}(2^n)$ \\
+    0 $\leq$ 2 $\leq$ c \\
+    Since, for all value  of $n_o \geq  1$ and n $\geq n_o$, C $\geq$ 2.\\
+    
+    
+    Hence, $O(log{}(2^n)) = O(log{}(4^n))$. \\  
+    \item $O(n!)$  =  $O((n+1)!)$ \\\\
+    Let $O(n!)$ is member of the set  $O((n+1)!)$ \\
+    Using $O-notation$, 0 $\leq$  $f(n)$ $\leq$ c$g(n)$ \\
+    0 $\leq$  $n!$ $\leq$ c$(n+1)!$ \\
+    0 $\leq$ $\frac{1}{n+1}$ $\leq$ c \\
+    Since, for all value  of $n_o \geq  1$ and n $\geq n_o$, C is constant.\\
+
+    Let $O((n+1)!)$ is member of the set  $O(n!)$ \\
+    Using $O-notation$, 0 $\leq$  $f(n)$ $\leq$ c$g(n)$ \\
+    0 $\leq$ $(n+1)!$  $\leq$ c$n!$ \\
+    0 $\leq$ n+1 $\leq$ c \\
+    Since, It is impossible to exist for all value  of $n_o \geq  1$ and n $\geq n_o$. Hence, it is contradicted.\\\\
+    Hence, $n! \neq (n+1)!)$.   \\
+\end{enumerate}
+\section{Problems from the textbook:}
+\begin{enumerate}
+    \item Exercise 1.1-1\\\\
+    = max$( \,f(n),g(n)) \,$ $\leq$  max$( \,f(n),g(n)) \,$ + min$( \,f(n),g(n)) \,$ \\
+    = $f(n) + g(n)$\\
+    \item Exercise 3.1-2\\\\
+    When |a| $\leq$ n, n + a $\leq$ 2n.\\
+    Let $c_1$ = $0.5^b$ and $c_2$ = $2^b$.\\
+    0 $\leq$ $c_1 n^b$ $\leq$ $(n+a)^b$  $\leq$ $c_2 n^b$ \\
+    By putting value of $c_1$ and $c_2$, we will get 0 $\leq$ $(\frac{n}{2})^b$ $\leq$ $(n+a)^b$  $\leq$ $(2n)^b$\\
+    Therefore, we can say that there exist $c_1$, $c_2$ and $n_0$ for all n $\geq$ $n_0$. Hence, $(n+a)^b$ = $\theta(n^b)$ 
+
+    \item Exercise 3.2-4\\\\
+    We can say that function is polynomially bounded when $f(n)$ = O($n^k$), when k is some constant.\\\\
+    For $\ceil[\big]{lg n}!$, It is not polynomially bound because there must exist  a, d and $n_0$ for all n $\geq$ $n_0$. \\
+    It may hold true if n  = $2^k$\\  
+    k = log n\\
+    k! $\leq$ $2^k$\\
+    Here, n = $2^k$  is contradicted as k! $\leq$ $2^k$ condition is not satisfied for k $\geq$ 1 and also factorial function are not exponentially bounded. \\
+    Therefore, $\ceil[\big]{lg n}!$ is not polynomially bounded\\\\  
+    For $\ceil[\big]{lg lg n}!$, Suppose n  = $2^{2^k}$ \\
+    Here, k! $\leq$ $2^{2^k}$  for k $\geq$ 1.\\
+    Therefore, $\ceil[\big]{lg lg n}!$ is polynomially bounded.\\
+    \item Exercise 3-4 (Except h)\\
+    \begin{enumerate}
+    \item $f(n)$ = $O(g(n))$ implies $g(n)$ = $O(f(n))$\\\\
+    $f(n)$ = $O(g(n))$ implies $g(n)$ = $O(f(n))$ conjecture is not true.\\
+    for eg. n = $O(n^2)$ but $n^2$ $\neq$ $O(n)$ \\
+    \item $f(n) + g(n)$ = $\Theta(min(f(n),g(n)))$ \\\\
+    
+    Let $f(n)$ = n and $g(n)$ = $n^2$.\\
+    n + $n^2$ $\neq$ $\Theta(n)$
+    Therefore, $f(n)$ + $g(n)$ = $\Theta(min(f(n),g(n)))$ conjecture is not true.   \\ 
+    \item $f(n)$ = $O(g(n))$ implies $lg(f(n))$ =  $O(lg(g(n)))$, where $lg(g(n))$ $\geq$ 1 and  $f(n)$ $\geq$ 1 for all sufficiently large n.\\\\
+    For $f(n)$ = $O(g(n))$, there exist $c_1$, $c_2$ and $n_0$ for all n $\geq$ $n_0$\\
+    f(n) $\leq$ cg(n) and f(n) $\geq$ 1\\
+    Applying log on both side\\
+    $log f(n)$ $\leq$ $log c$ + $log g(n)$ \\
+    Now we have to prove that $f(n)$ $\leq$ d$log g(n)$\\
+    
+    $log c$ + $log g(n)$ $\leq$ d$log g(n)$\\
+    $\frac{log c + log g(n)}{log g(n)}$ $\leq$ d\\
+    From above, we can say that $log g(n)$ $\geq$ 1
+    \item $f(n)$ = $O(g(n))$  implies $2 ^ {f(n)}$ = $O(2 ^ {f(n)})$\\\\
+    This Conjecture is not true.\\
+    Suppose $f(n)$ = $4^n$, $g(n)$ = $2^n$  and $f(n)$ $\in O(g(n))$ \\
+    Using $O-notation$, 0 $\leq$  f(n) $\leq$ cg(n) \\
+    0 $\leq$ $4^n$  $\leq$ c$2^n$ \\
+    0 $\leq$ $2^n$ $\leq$ c \\
+    Since, It is impossible to exist for all value  of $n_o \geq  1$ and n $\geq n_o$. Hence, it is contradicted.\\
+    \item $f(n)$ = $O((f(n))^2)$\\\\
+    This Conjecture is not true.\\
+    Let $f(n)$ = $\frac{1}{n}$\\
+    0 $\leq$ $\frac{1}{n}$ $\leq$ c$\frac{1}{n^2}$\\
+    0 $\leq$ $n$ $\leq$ c \\
+    Since, c must be constant. 0 $\leq$ $n$ $\leq$ c implies contradiction.\\ 
+    \item $f(n)$ = $O(g(n))$ implies $g(n)$ = $\Omega(f(n))$\\\\
+    
+    This Conjecture is true.\\
+    Since, $f(n)$ = $O(g(n))$ implies that there exist a c and $n_0$ for all n $\geq$ $n_0$\\
+    O $\leq$ $f(n)$ $\leq$ c$g(n)$\\
+    O $\leq$ $\frac{f(n)}{c}$ $\leq$ $g(n)$\\
+    
+    \item $f(n)$ = $\Theta(f(n/2))$\\\\
+    Let $f(n)$ = $2^{2n}$\\
+    Since, $f(n)$ = $O(g(n))$ implies that there exist a $c_1$, $c_2$ and $n_0$ for all n $\geq$ $n_0$\\
+    O $\leq$ $c_1g(n)$ $\leq$ $f(n)$ $\leq$ $c_2g(n)$\\
+    O $\leq$ $c_12^n$ $\leq$ $2^{2n}$ $\leq$ $c_22^n$\\
+    O $\leq$ $c_1$ $\leq$ $2^n$ $\leq$ $c_2$\\
+    Since, c must be constant. O $\leq$ $c_1$ $\leq$ $2^n$ $\leq$ $c_2$ implies contradiction.\\
+    Therefore, Conjecture is false.\\
+    \end{enumerate}
+    \item Exercise 4.5-1
+    \begin{enumerate}
+        \item $T(n)$ = $2T(n/4)$ +1\\\\
+        a = 2, b = 4 and $f(n)$ = 1\\
+        $n^{log_4^{}2}$ = $n^{\frac{1}{2}}$ = $\Theta(n^\frac{1}{2})$\\
+        Since, $f(n)$ = $n^{log_2^{}4-k} $,  where k =1\\
+        Using case 1, we can conclude $T(n)$ = $\Theta(\sqrt{n})$\\
+        \item $T(n)$ = $2T(n/4)$ + $\sqrt{n}$\\\\
+        a = 2, b = 4 and $f(n)$ = $\sqrt{n}$\\
+        $n^{log_4^{}2}$ = $\sqrt{n}$ = $\Theta(\sqrt{n})$\\
+        Since, $f(n)$ =   $\sqrt{n}$\\
+        Using case 2, we can conclude $T(n)$ = $\Theta(\sqrt{n}logn)$\\
+        \item $T(n)$ = $2T(n/4)$ +n\\\\
+        a = 2, b = 4 and $f(n)$ = n\\
+        $n^{log_4^{}2}$ = $\sqrt{n}$ = $\Theta(\sqrt{n})$\\
+        Since, $f(n)$ = n\\
+        $af(n/b)$ $\leq$ $cf(n)$\\
+        2$\frac{n}{4}$ $\leq$ cn\\
+        $\frac{1}{2}$ $\leq$ c\\
+        Using case 3, we can conclude that $T(n)$ = $\Theta(n)$  as it holds regularity condition\\
+    
+        \item $T(n)$ = $2T(n/4)$ + $n^2$\\\\
+        a = 2, b = 4 and $f(n)$ = $n^2$\\
+        $n^{log_4^{}2}$ = $\sqrt{n}$ = $\Theta(\sqrt{n})$\\
+        Since, $f(n)$ = $n^2$\\
+        $af(n/b)$ $\leq$ $cf(n)$\\
+        2$\frac{n^2}{16}$ $\leq$ c$n^2$\\
+        $\frac{1}{8}$ $\leq$ c$n^2$\\
+        Using case 3, we can conclude that $T(n)$ = $\Theta(n^2)$ as it holds regularity condition\\ 
+    \end{enumerate}
+    \item Exercise 4.5-5\\\\
+    Let a =1, b = 3, $\epsilon$ = 1 and $f(n)$ = $3n + 2^{3n}$\\
+    $n^{log_3^{}1}$ = $n^0$ = 1 = $\Theta(1)$\\
+    Since, $f(n)$ = $3n + 2^{3n}$\\
+    $af(n/b)$ $\leq$ $cf(n)$\\
+    $3n + 2^{3n}$ $\leq$ c$(3n + 2^{3n})$\\
+    $(n + 2^n)$ $\leq$ c$(3n + 2^{3n})$\\
+    since, $3n$ < $n + 2^n$, It fails regularity condition, even it satisfies $f(n)$ = $\Omega(n^{log_b^{}{a + \epsilon}})$ 
+    
+    \item Exercise 4.1 \\
+    
+    \begin{enumerate}
+        \item $T(n)$ = 2$T(n/2)$ + $n^4$\\\\
+        a = 2, b = 2 and $f(n)$ = $n^4$\\
+        $n^{log_2^{}2}$ = n = $\Theta(n)$\\
+        Since, $f(n)$ = $n^4$\\
+        a$f(n/b)$ $\leq$ $cf(n)$\\
+        2 $\frac{n^4}{16}$ $\leq$ c$n^4$\\
+        $\frac{1}{8}$ $\leq$ c\\
+        Using case 3, we can conclude that $T(n)$ = $\Theta(n^4)$  as it holds regularity condition\\
+        \item $T(n)$ = $T(7n/10)$ + n \\\\
+        a = 1, b = $\frac{10}{7}$ and $f(n)$ = $n$\\
+        $n^{log_\frac{10}{7}^{}1}$ = 1 = $\Theta(1)$ \\
+        Since, $f(n)$ = $n$\\
+        Using case 3, we can conclude that $T(n)$ = $\Theta(n)$\\
+        a$f(n/b)$ $\leq$ $cf(n)$\\
+        $\frac{7n}{10}$ $\leq$ c$n$\\
+        0.7 $\leq$ c\\
+        \item $T(n)$ = 16$T(n/4)$ + $n^2$ \\\\
+        a = 16, b = 4 and $f(n)$ = $n^2$\\
+        $n^{log_4^{}16}$ = $n^2$ = $\Theta(n^2)$ \\
+        Since, $f(n)$ = $n^2$\\
+        Using case 2, we can conclude that $T(n)$ = $\Theta(n^2logn)$\\
+        \item $T(n)$ = 7$T(n/3)$ + $n^2$\\\\
+        a = 7, b = 3 and $f(n)$ = $n^2$\\
+        $n^{log_3^{}7}$ = $n^{1.77}$ =$\Theta(n^{1.77})$\\
+        Since, $f(n)$ = $n^2$\\
+        a$f(n/b)$ $\leq$ $cf(n)$\\
+        7$\frac{n^2}{9}$ $\leq$ c$n^2$\\
+        $\frac{7}{9}$ $\leq$ c\\
+        Using case 3, we can conclude that $T(n)$ = $\Theta(n^2)$ as it holds regularity condition\\
+        \item $T(n)$ = 7$T(n/2)$ + $n^2$\\\\
+        a = 7, b = 2 and $f(n)$ = $n^2$\\
+        $n^{log_2^{}7}$ = $n^{2.80}$ = $\Theta(n^{2.80})$ \\
+        Since, $f(n)$ = $n^2$\\
+        Using case 1, we can conclude that $T(n)$ = $\Theta(n^{log_2^{}7})$\\
+        \item $T(n)$ = 2$T(n/4)$ + $\sqrt{n}$ \\\\
+        a = 2, b = 4 and $f(n)$ = $\sqrt{n}$\\
+        $n^{log_4^{}2}$ = $n^{1.77}$ = $\Theta(n^{1.77})$ \\
+        Since, $f(n)$ = $n^2$\\
+        a$f(n/b)$ $\leq$ $cf(n)$\\
+        2$\frac{\sqrt{n}}{4}$ $\leq$ c$\sqrt{n}$\\
+        $\frac{1}{2}$ $\leq$ c\\
+        Using case 3, we can conclude that $T(n)$ = $\Theta(\sqrt{n})$ as it holds regularity condition\\
+        \item $T(n)$ = $T(n-2)$ + $n^2$\\\\
+        The Master method is not apply to this recurrence.\\
+    \end{enumerate}
+    \item Exercise 4.3
+    \begin{enumerate}
+        \item $T(n)$ = 4$T(n/3)$ + $nlogn$\\\\
+        a = 4, b = 3 and $f(n)$ = $nlogn$\\
+        $n^{log_3^{}4}$ = $n^{1.26}$  = $\Theta(n^{1.26})$\\
+        Since, $f(n)$ = $nlogn$ = $\Theta(nlogn)$\\
+        Using case 1, we can conclude that $T(n)$ = $\Theta(n^{log_3^{}4})$\\
+        \item $T(n)$ = 3$T(n/3)$ + $n/logn$\\\\
+        a = 3, b = 3 and $f(n)$ = $n/logn$\\
+        $n^{log_3^{}3}$ = $n$ = $\Theta(n)$ \\
+        Since, $f(n)$ = $n/logn$ = $\Theta(n/logn)$\\
+        The Master method is not apply to this recurrence as it falls under case 1 and case 2.\\
+        \item $T(n)$ = 4$T(n/2)$ + $n^2\sqrt{n}$\\\\
+        a = 4, b = 2 and $f(n)$ = $n^2\sqrt{n}$\\
+        $n^{log_2^{}4}$ = $n^2$  = $\Theta(n^2)$\\
+        Since, $f(n)$ = $n^2\sqrt{n}$ = $\Theta(n^2\sqrt{n})$\\
+        a$f(n/b)$ $\leq$ $cf(n)$\\
+        4$\frac{n^2\sqrt{n}}{4\sqrt{2}}$ $\leq$ c$n^2\sqrt{n}$\\
+        $\frac{1}{\sqrt{2}}$ $\leq$ c\\
+        Using case 3, we can conclude that $T(n)$ = $\Theta(n^2\sqrt{n})$  as it holds regularity condition\\
+        \item $T(n)$ = 3$T(n/3-2)$ + $n/2$\\\\
+        The Master method is not apply to this recurrence.\\
+        \item $T(n)$ = 2$T(n/2)$ + $n/logn$\\\\
+        a = 2, b = 2 and $f(n)$ = $n/logn$\\
+        $n^{log_2^{}2}$ = $n$ = $\Theta(n)$\\
+        Since, $f(n)$ = $n/logn$ = $\Theta(n/logn)$\\
+        The Master method is not apply to this recurrence as it falls under case 1 and case 2.\\
+        \item $T(n)$ = $T(n/2)$ + $T(n/4)$ + $T(n/8)$ + $n$\\\\
+        The Master method is not apply to this recurrence.\\
+        \item $T(n)$ = $T(n-1)$ + $1/n$\\\\
+        The Master method is not apply to this recurrence.\\
+        \item $T(n)$ = $T(n-1)$ + $logn$\\\\
+        The Master method is not apply to this recurrence.\\
+        \item $T(n)$ = $T(n-1)$ + $1/logn$\\\\
+        The Master method is not apply to this recurrence.\\
+        \item $T(n)$ = $\sqrt{n}T(\sqrt{n})$ + $n$\\\\
+        The Master method is not apply to this recurrence.\\
+    \end{enumerate}
+\end{enumerate}    
+\end{document}
