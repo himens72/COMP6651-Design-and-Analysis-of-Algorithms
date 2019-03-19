@@ -137,7 +137,6 @@ int main(int argc, char* argv[])
 	if (readCostFile(/*argv[3]*/) == -1) {
 		return -1;
 	}
-	
 	if (readInputFile(/*argv[1],argv[2]*/) == -1) {
 		return -1;
 	}
