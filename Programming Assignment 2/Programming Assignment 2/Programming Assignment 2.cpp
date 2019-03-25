@@ -7,7 +7,7 @@
 #include<vector>
 
 using namespace std;
-
+ofstream OUTPUT_FILE22("outputqqqq.txt");
 int *cost;
 vector < int > possibleCheque;
 vector < vector < int > > optimalPayment;
@@ -47,16 +47,20 @@ void paymentUtil(int period, int credit, int balance, int arr[], int data[], int
 		for (int j = 0; j < r; j++) {
 			temp.push_back(data[j]);
 			tempCost += data[j];
+			OUTPUT_FILE22 << data[j] << " ";
 		}
+		OUTPUT_FILE22 << endl;
 		if (tempCost == period * credit)
 			calculateOptimalPayment(period, credit, balance, temp);
 		temp.clear();
 		return;
 	}
-	for (int i = start; i <= end && end - i >= r - index && arr[i] >= 0; i++) {
+	for (int i = start; i <= end - 2 && end - i >= r - index && arr[i] >= 0; i++) {
+		//cout << " i " << i<< endl;
 		data[index] = arr[i];
 		if (data[0] == firstCheque) {
 			if (index == 0) {
+			//	cout << "start ---> " << i << " : end ---> " << end << endl;
 				paymentUtil(period, credit, balance, arr, data, i, end, index + 1, r, firstCheque);
 			}
 			else if (index > 0) {
@@ -64,7 +68,8 @@ void paymentUtil(int period, int credit, int balance, int arr[], int data[], int
 				for (int k = 0; k < index; k++) {
 					count += data[k];
 				}
-				if (period * credit - count >= 0) {
+				if (period * credit - count >= 0 && count + ((period - index)*data[index]) >= period * credit) {
+			//		cout << "start ---> " << i << " : end ---> "<< end << endl;
 					paymentUtil(period, credit, balance, arr, data, i, end, index + 1, r, firstCheque);
 				}
 			}
