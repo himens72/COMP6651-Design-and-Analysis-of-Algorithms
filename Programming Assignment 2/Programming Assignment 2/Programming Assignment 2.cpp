@@ -200,6 +200,7 @@ void generateFirstOptimalCheque(int period, int amount, int balance) {
 }
 
 int readInputFile(/* char* inputFile,  char* outputFile */) {
+	
 	//ifstream file(inputFile);
 	//ofstream OUTPUT_FILE(outputFile);
 	ifstream file("intest.txt");
