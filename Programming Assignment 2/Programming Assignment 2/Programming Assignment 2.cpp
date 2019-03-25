@@ -9,6 +9,7 @@
 using namespace std;
 
 int *cost;
+vector < int > possibleCheque;
 vector < vector < int > > optimalPayment;
 vector < int > optimalCost;
 void calculateOptimalPayment(int period, int credit, int balance, vector < int > ways) {
@@ -24,7 +25,7 @@ void calculateOptimalPayment(int period, int credit, int balance, vector < int >
 		for (int j = 0; j < tempOptimalPayment.size(); j++) {
 			payment += tempOptimalPayment[j];
 		}
-		if (!(balance >= (payment - (credit * (i+ 1))))) {
+		if (!(balance >= (payment - (credit * (i + 1))))) {
 			flag = true;
 			break;
 		}
@@ -39,31 +40,41 @@ void calculateOptimalPayment(int period, int credit, int balance, vector < int >
 		optimalPayment.push_back(temp);
 	}
 }
-void paymentUtil(int period, int credit, int balance, int arr[], int data[], int start, int end, int index, int r)
-{
-	if (index == r)
-	{
+void paymentUtil(int period, int credit, int balance, int arr[], int data[], int start, int end, int index, int r, int firstCheque) {
+	if (index == r) {
 		vector < int > temp;
 		int tempCost = 0;
 		for (int j = 0; j < r; j++) {
 			temp.push_back(data[j]);
 			tempCost += data[j];
 		}
-		if(tempCost ==  period * credit)
-			calculateOptimalPayment(period,credit,balance,temp);
+		if (tempCost == period * credit)
+			calculateOptimalPayment(period, credit, balance, temp);
 		temp.clear();
 		return;
 	}
-	for (int i = start; i <= end && end - i >= r - index && arr[i] >= 0; i++)
-	{
+	for (int i = start; i <= end && end - i >= r - index && arr[i] >= 0; i++) {
 		data[index] = arr[i];
-		paymentUtil(period, credit, balance, arr, data, i, end, index + 1, r);
+		if (data[0] == firstCheque) {
+			if (index == 0) {
+				paymentUtil(period, credit, balance, arr, data, i, end, index + 1, r, firstCheque);
+			}
+			else if (index > 0) {
+				int count = 0;
+				for (int k = 0; k < index; k++) {
+					count += data[k];
+				}
+				if (period * credit - count >= 0) {
+					paymentUtil(period, credit, balance, arr, data, i, end, index + 1, r, firstCheque);
+				}
+			}
+		}
+
 	}
 }
-void generateOptimalPayment(int period, int credit, int balance, int arr[], int n, int r)
-{
+void generateOptimalPayment(int period, int credit, int balance, int arr[], int n, int r, int firstCheque) {
 	int *data = new int[r];
-	paymentUtil(period, credit, balance,arr, data, 0, n + 1 , 0, r);
+	paymentUtil(period, credit, balance, arr, data, 0, n + 1, 0, r, firstCheque);
 }
 
 int generateOptimalCost() {
@@ -99,6 +110,13 @@ int readCostFile(/*char* costFile*/) {
 	}
 	return 0;
 }
+void generateFirstOptimalCheque(int period, int amount, int balance) {
+	for (int i = balance + amount; i >= amount; i--) {
+		if (/*cost[i] == minimum && */balance >= i - amount) {
+			possibleCheque.push_back(i);
+		}
+	}
+}
 int readInputFile(/* char* inputFile,  char* outputFile */) {
 	//ifstream file(inputFile);
 	//ofstream OUTPUT_FILE(outputFile);
@@ -115,15 +133,20 @@ int readInputFile(/* char* inputFile,  char* outputFile */) {
 		int a;
 		int b;
 		file >> n >> a >> b;
-		int *array = new int[(n * a) + 2];
-		int count = 0;
-		for (int i = n * a; i >= 0; i--) {
-			array[count] = i;
-			count++;
+		generateFirstOptimalCheque(n, a, b);
+		for (int j = 0; j < possibleCheque.size(); j++) {
+			int *array = new int[possibleCheque[j] + 2];
+			int count = 0;
+			for (int k = possibleCheque[j]; k >= 0; k--) {
+				array[count] = k;
+				count++;
+			}
+			array[possibleCheque[j] + 1] = -1;
+			generateOptimalPayment(n, a, b, array, possibleCheque[j] + 2, n, possibleCheque[j]);
+			free(array);
 		}
-		array[(n * a) + 1] = -1;
-		generateOptimalPayment(n , a, b,array, (n*a) + 2, n);
-		OUTPUT_FILE<< generateOptimalCost();
+		OUTPUT_FILE << generateOptimalCost();
+		possibleCheque.clear();
 		optimalCost.clear();
 		optimalPayment.clear();
 		if (i != data - 1)
